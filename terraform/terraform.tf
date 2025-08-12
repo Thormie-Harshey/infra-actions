@@ -1,7 +1,7 @@
 terraform {
   required_version = "~> 1.0"
   backend "s3" {
-    bucket = "eks-github-action"
+    bucket = "iac-github-action"
     key    = "iac-actions/state.tfstate"
     region = "us-east-1"
   }

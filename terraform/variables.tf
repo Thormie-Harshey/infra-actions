@@ -4,7 +4,11 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "name" {
+variable "vpc_name" {
+  default = "iac-eks"
+}
+
+variable "eks_cluster" {
   default = "githubactions-eks"
 }
 
