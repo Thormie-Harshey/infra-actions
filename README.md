@@ -46,13 +46,14 @@ To successfully use this repository, you must have the following configured in y
 1.  `AWS_ACCESS_KEY_ID`: Your AWS access key.
 2.  `AWS_SECRET_ACCESS_KEY`: Your AWS secret key.
 
+> **Known limitation:** this pipeline authenticates with long-lived AWS access keys stored as GitHub secrets, rather than GitHub OIDC. Other repos in this profile (`petclinic-platform`, `php-web-app-iac`) use a GitHub-OIDC-trusted IAM role instead, which avoids storing AWS credentials in GitHub entirely. This repo predates that pattern and hasn't been migrated yet — doing so would mean adding an OIDC-trusted IAM role to the Terraform here and switching `iac.yml` to request a short-lived token via `permissions: id-token: write` instead of reading these secrets.
 
 ## **Usage**
 #### **1. Deploying the Infrastructure**
 
 The deployment workflow is defined in `.github/workflows/iac.yml`. It is triggered on a `push` to the `infra-actions` branch.
 
-* Simply push your Terraform changes to the `iac-actions` branch.
+* Simply push your Terraform changes to the `infra-actions` branch.
 * The GitHub Actions workflow will automatically run `terraform init`, `terraform plan`, and `terraform apply`.
 * You can monitor the progress of the deployment in the "Actions" tab of your repository.
 
